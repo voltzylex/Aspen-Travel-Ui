@@ -11,6 +11,7 @@ const kPrimaryColor = Color(0xff196EEE);
 const kWhiteColor = Color(0xffffffff);
 const kGreyColor = Color(0xffB8B8B8);
 const kHorizontalPadding = 20.0;
+const kGreyTitleColor = Color(0xff4D5652);
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});

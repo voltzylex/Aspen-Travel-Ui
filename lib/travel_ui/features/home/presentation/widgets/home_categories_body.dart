@@ -1,4 +1,5 @@
 import 'package:custom_uui_design/travel_ui/features/home/data/places_detail.dart';
+import 'package:custom_uui_design/travel_ui/features/home/presentation/widgets/place_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeCategoriesBody extends StatelessWidget {
@@ -8,7 +9,7 @@ class HomeCategoriesBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Popular Places
+        // Title Row
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -18,35 +19,26 @@ class HomeCategoriesBody extends StatelessWidget {
                 context,
               ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
             ),
-            TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                foregroundColor: Theme.of(context).colorScheme.primary,
-              ),
-              child: Text(
-                "See All",
-                style: TextStyle(fontWeight: FontWeight.w600),
-              ),
-            ),
+            TextButton(onPressed: () {}, child: const Text("See All")),
           ],
         ),
+
+        // Carousel/List
         SizedBox(
-          height: MediaQuery.sizeOf(context).height * 0.4,
+          height: MediaQuery.of(context).size.height * 0.4,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: placeDetails
-                .map(
-                  (place) => Container(
-                    width: MediaQuery.sizeOf(context).width * 0.6,
-
-                    margin: const EdgeInsets.only(right: 20.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(25.0),
-                      child: Image.network(place['image'], fit: BoxFit.cover),
-                    ),
-                  ),
-                )
-                .toList(),
+            // padding: const EdgeInsets.only(left: 16.0),
+            // itemCount: placeDetails.length,
+            children: placeDetails.map((place) {
+              // log("Place Details: $place");
+              return PlaceCard(place: PlaceDetailsModel.fromMap(place));
+            }).toList(),
+            // itemBuilder: (context, index) {
+            //   log("Place Details: ${placeDetails[index]}");
+            //   final place = placeDetails[index];
+            //   return PlaceCard(place: PlaceDetailsModel.fromMap(place));
+            // },
           ),
         ),
       ],

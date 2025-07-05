@@ -35,3 +35,33 @@ final List<Map<String, dynamic>> placeDetails = [
     "favorite": true,
   },
 ];
+class PlaceDetailsModel{
+  final String name;
+  final double rating;
+  final String image;
+  final bool favorite;
+
+  PlaceDetailsModel({
+    required this.name,
+    required this.rating,
+    required this.image,
+    required this.favorite,
+  });
+
+  factory PlaceDetailsModel.fromMap(Map<String, dynamic> map) {
+    return PlaceDetailsModel(
+      name: map['name'] ?? 'Unknown',
+      rating: map['rating']?.toDouble() ?? 0.0,
+      image: map['image'] ?? '',
+      favorite: map['favorite'] ?? false,
+    );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'rating': rating,
+      'image': image,
+      'favorite': favorite,
+    };
+  }
+}
