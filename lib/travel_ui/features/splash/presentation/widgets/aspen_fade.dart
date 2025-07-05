@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class AspenFadeImage extends StatefulWidget {
-  const AspenFadeImage({super.key});
+class CustomFadeTransition extends StatefulWidget {
+  const CustomFadeTransition({
+    super.key,
+    this.animationDuration = const Duration(seconds: 3),
+    this.startDelay = const Duration(seconds: 0),
+    this.begin = Alignment.bottomLeft,
+    this.end = Alignment.bottomRight,
+    required this.child,
+  });
+  final Duration animationDuration;
+  final Duration startDelay;
+  final Widget child;
+  final AlignmentGeometry begin;
+  final AlignmentGeometry end;
 
   @override
-  State<AspenFadeImage> createState() => _AspenFadeImageState();
+  State<CustomFadeTransition> createState() => _CustomFadeTransitionState();
 }
 
-class _AspenFadeImageState extends State<AspenFadeImage>
+class _CustomFadeTransitionState extends State<CustomFadeTransition>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -18,9 +29,15 @@ class _AspenFadeImageState extends State<AspenFadeImage>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
-    )..forward();
+      duration: widget.animationDuration,
+    );
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
+    _startAnimationWithDelay();
+  }
+
+  _startAnimationWithDelay() async {
+    await Future.delayed(widget.startDelay);
+    _controller.forward();
   }
 
   @override
@@ -32,15 +49,12 @@ class _AspenFadeImageState extends State<AspenFadeImage>
           shaderCallback: (bounds) => LinearGradient(
             colors: [Colors.white, Colors.transparent],
             stops: [_animation.value, _animation.value + 0.01],
-            begin: Alignment.bottomLeft,
-            end: Alignment.bottomRight,
+            begin: widget.begin,
+            end: widget.end,
           ).createShader(bounds),
           blendMode: BlendMode.dstIn,
 
-          child: Opacity(
-            opacity: _animation.value,
-            child: SvgPicture.asset("assets/travel/aspen.svg", width: 300),
-          ),
+          child: Opacity(opacity: _animation.value, child: widget.child),
         );
       },
     );
