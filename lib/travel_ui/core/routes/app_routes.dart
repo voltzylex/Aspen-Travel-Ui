@@ -1,7 +1,7 @@
 // GoRouter configuration
 import 'package:custom_uui_design/travel_ui/features/home/data/places_detail.dart';
 import 'package:custom_uui_design/travel_ui/features/home/presentation/pages/home_page.dart';
-import 'package:custom_uui_design/travel_ui/features/place/presentation/page/place_page.dart';
+import 'package:custom_uui_design/travel_ui/features/place/presentation/page/place_detail_page.dart';
 import 'package:custom_uui_design/travel_ui/travel.dart';
 import 'package:go_router/go_router.dart';
 
