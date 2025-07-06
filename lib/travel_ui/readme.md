@@ -1,3 +1,7 @@
+# You can find the figma url here 
+[Figma](https://www.figma.com/design/lj8ecCb1a4zJkT1CwmuYqV/Aspen-Travel-App-Exploration--Mobile-App-Design--Community-?node-id=0-11&t=4luT7PYjwFzsdznH-0)
+
+
 lib/
 ├── core/
 │   ├── theme/                # App-wide theme, colors, text styles

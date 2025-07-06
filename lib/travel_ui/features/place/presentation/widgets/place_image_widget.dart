@@ -75,8 +75,8 @@ class _PlaceImageState extends State<PlaceImage>
                   boxShadow: [
                     BoxShadow(
                       color:
-                          shadowColor?.withOpacity(0.3) ?? Colors.transparent,
-                      blurRadius: 30,
+                          shadowColor?.withOpacity(0.5) ?? Colors.transparent,
+                      blurRadius: 40,
                       offset: const Offset(0, 10),
                       spreadRadius: 10,
                     ),

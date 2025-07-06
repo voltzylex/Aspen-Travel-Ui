@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
             // Tab Buttons
             HomeCategories(),
             // Categories Body
-            Expanded(child: HomeCategoriesBody()),
+            Expanded(child: SingleChildScrollView(child: HomeCategoriesBody())),
           ],
         ),
       ),
